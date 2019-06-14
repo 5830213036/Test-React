@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ProdList from "./components/prodList";
+import EachProduct from './components/EachProduct/eachProduct'
 import "./App.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 class App extends Component {
@@ -8,19 +9,24 @@ class App extends Component {
   };
   componentDidMount() {
     fetch("https://cc-mock-api.herokuapp.com/product/")
-      .then(res => res.json())
+      .then(res => res.json()
+     
+      
+      )
       .then(data => {
+        console.log('data : ' , data.list);
+        
         this.setState({ prodList: data.list });
       })
       .catch(console.log);
   }
   render() {
     const IndexPage = () => {
-      return <ProdList prodList={this.state.prodList} />;
+      return <ProdList prodList={this.state.prodList}/>;
     };
     return (
-      <div class="card">
-        <div class="card-body">
+      <div className="card">
+        <div className="card-body">
           <center>
             <h1>Product List</h1>
           </center>
@@ -28,6 +34,7 @@ class App extends Component {
             <Link to="/">Home</Link>
             <Switch>
               <Route exact path="/" component={IndexPage} />
+              <Route exact path="/product/:id" component={EachProduct} />
             </Switch>
           </Router>
         </div>

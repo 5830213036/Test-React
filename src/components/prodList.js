@@ -43,8 +43,8 @@ const ProdList = ({ prodList }) => {
   const classes = useStyles();
   return (
     <div>
-      {prodList.map(prodLists => (
-        <CardActionArea>
+      {prodList.map((prodLists,index) => (
+        <CardActionArea key={index}>
           <div className={classes.root}>
             <Paper className={classes.paper}>
               <Grid container spacing={2}>
@@ -72,7 +72,8 @@ const ProdList = ({ prodList }) => {
                     <Typography variant="subtitle1" align="center">
                       {prodLists.price}฿
                     </Typography>
-                    <Link to={prodLists.id}>
+                    
+                    <Link to={`product/${prodLists.id}`}>
                       <Button
                         variant="contained"
                         align="center"
